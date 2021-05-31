@@ -43,6 +43,7 @@ public class CcmConfigMaster {
 	@Column(name = "data_format",length =50,nullable = true)
 	private String dataFormat;
 	
+	
 	@Column(name = "field_default_value",length =50,nullable = true)
 	private String fieldDefaultValue;
 
