@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "ccm_config_master")
-public class CcmConfigMaster {
+public class CcmConfiguration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
