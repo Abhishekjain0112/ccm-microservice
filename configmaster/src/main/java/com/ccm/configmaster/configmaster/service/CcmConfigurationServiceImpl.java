@@ -18,14 +18,14 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	
 	@Override
 	public List<CcmConfiguration> getAllConfigurations() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return configurationRepo.findAll();
 	}
 
 	@Override
-	public CcmConfiguration getConfigurationById() {
-		// TODO Auto-generated method stub
-		return null;
+	public CcmConfiguration getConfigurationById(int fieldCode) {
+		
+		return configurationRepo.getById(fieldCode);
 	}
 
 	@Transactional
