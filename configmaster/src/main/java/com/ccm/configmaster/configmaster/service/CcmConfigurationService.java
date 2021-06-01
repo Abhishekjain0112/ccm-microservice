@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 
-public interface CcmConfigMasterService {
+public interface CcmConfigurationService {
 
 	public List<CcmConfiguration> getAllConfigurations();
 
