@@ -5,8 +5,11 @@ import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ccm.configmaster.configmaster.model.CcmConfiguration;
@@ -19,9 +22,9 @@ public class CcmConfigurationController {
 	private CcmConfigurationService configurationService;
 	
 	
-	@GetMapping("/get/{fieldCode}")
-	public CcmConfiguration getConfigurationById(@PathVariable int fieldCode){
-		return configurationService.getConfigurationById(fieldCode);
+	@GetMapping("/get/{id}")
+	public CcmConfiguration getConfigurationById(@PathVariable int id){
+		return configurationService.getConfigurationById(id);
 	}
 		
 	@GetMapping("/get")
@@ -29,10 +32,10 @@ public class CcmConfigurationController {
 		return configurationService.getAllConfigurations();
 	}
 		
-	@GetMapping("/save1")
-	public CcmConfiguration addConfiguration() {
+	@PostMapping(value = "/add" , consumes = "application/json", produces = "application/json")
+	public CcmConfiguration addConfiguration(@RequestBody CcmConfiguration configuration ) {
 		
-		CcmConfiguration config = new CcmConfiguration();
+	/*	CcmConfiguration config = new CcmConfiguration();
 		
 		config.setFieldCode("101Field");
 		config.setFieldName("FieldName");
@@ -45,12 +48,10 @@ public class CcmConfigurationController {
 		config.setField_value("Field Value");
 		config.setAffected_modules("Affected Module");
 		config.setReason("reason");
-		config.setCreatedOn(Timestamp.from(Instant.now()));
-		config.setUpdatedOn(Timestamp.from(Instant.now()));
 		config.setStatus(false);
+		*/
 		
-		
-		return configurationService.addConfiguration(config);
+		return configurationService.addConfiguration(configuration);
 	}
 	
 	

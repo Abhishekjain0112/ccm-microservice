@@ -1,7 +1,7 @@
 package com.ccm.configmaster.configmaster.model;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,10 +63,10 @@ public class CcmConfiguration {
 	private String reason;
 		
 	@Column(name = "created_on", nullable = false)
-	private Timestamp createdOn;
+	private Timestamp createdOn=Timestamp.from(Instant.now());
 
 	@Column(name = "updated_on", nullable = false)
-	private Timestamp updatedOn;
+	private Timestamp updatedOn=Timestamp.from(Instant.now());
 	
 	@Column(name = "status", nullable = false)
 	private boolean status;	

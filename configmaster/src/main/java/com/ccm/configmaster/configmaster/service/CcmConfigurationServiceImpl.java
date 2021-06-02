@@ -23,9 +23,10 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	}
 
 	@Override
-	public CcmConfiguration getConfigurationById(int fieldCode) {
+	@Transactional
+	public CcmConfiguration getConfigurationById(int id) {
 		
-		return configurationRepo.getById(fieldCode);
+		return configurationRepo.findById(id).get();
 	}
 
 	@Transactional

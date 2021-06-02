@@ -14,7 +14,7 @@ public class MyController {
 	@Autowired
 	private StudentService studentService;
 	
-	@GetMapping("/get/{name}")
+	@GetMapping("/get111/{name}")
 	public String getName(@PathVariable String name){
 		return "Hello "+ name.toUpperCase() +" Welcome to the spring project";
 	}
