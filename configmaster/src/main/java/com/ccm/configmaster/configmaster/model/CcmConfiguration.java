@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +21,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "ccm_config_master")
+@ApiModel(description = "All Attributes of CCM Configuration data")
 public class CcmConfiguration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ccm_config_id" )
+	@ApiModelProperty(notes = "CCM Configration Id")
 	private int ccmConfigId;
 	
 	@Column(name = "field_code",length =10,nullable = false)
