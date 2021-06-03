@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class CcmConfiguration {
 	@Column(name = "ccm_config_id" )
 	private int ccmConfigId;
 	
-	
+	@NotBlank
 	@Column(name = "field_code",length =10,nullable = false, unique = true)
 	private String fieldCode;
 
