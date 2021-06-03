@@ -6,4 +6,6 @@ import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 
 public interface CcmConfigurationrRepo extends JpaRepository<CcmConfiguration, Integer> {
 
+	
+			public CcmConfiguration getByFieldCode(String fieldCode);
 }

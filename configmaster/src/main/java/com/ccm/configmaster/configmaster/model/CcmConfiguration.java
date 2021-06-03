@@ -27,7 +27,8 @@ public class CcmConfiguration {
 	@Column(name = "ccm_config_id" )
 	private int ccmConfigId;
 	
-	@Column(name = "field_code",length =10,nullable = false)
+	
+	@Column(name = "field_code",length =10,nullable = false, unique = true)
 	private String fieldCode;
 
 	@Column(name = "field_name",length =20,nullable = false)

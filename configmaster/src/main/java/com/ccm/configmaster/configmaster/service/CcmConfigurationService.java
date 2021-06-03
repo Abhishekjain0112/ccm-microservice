@@ -8,7 +8,10 @@ public interface CcmConfigurationService {
 
 	public List<CcmConfiguration> getAllConfigurations();
 
-	public CcmConfiguration getConfigurationById(int fieldCode);
+	public CcmConfiguration getConfigurationById(int id);
 
 	public CcmConfiguration addConfiguration(CcmConfiguration configuration);
+	
+	public CcmConfiguration getConfigurationByFieldCode(String fieldCode);
+	
 }

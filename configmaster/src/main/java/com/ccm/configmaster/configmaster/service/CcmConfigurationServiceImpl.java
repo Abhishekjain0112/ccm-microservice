@@ -16,6 +16,8 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	@Autowired
 	private CcmConfigurationrRepo configurationRepo;
 	
+	
+	
 	@Override
 	public List<CcmConfiguration> getAllConfigurations() {
 		
@@ -34,6 +36,12 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	public CcmConfiguration addConfiguration(CcmConfiguration configuration) {
 		
 		 return configurationRepo.save(configuration);
+	}
+
+	@Override
+	public CcmConfiguration getConfigurationByFieldCode(String fieldCode) {
+		 return configurationRepo.getByFieldCode(fieldCode);
+	
 	}
 
 }

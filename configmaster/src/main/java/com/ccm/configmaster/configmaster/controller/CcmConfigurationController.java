@@ -24,11 +24,16 @@ public class CcmConfigurationController {
 	private CcmConfigurationService configurationService;
 	
 	
-	@GetMapping("/get/{id}")
+	@GetMapping("/getid/{id}")
 	public CcmConfiguration getConfigurationById(@PathVariable int id){
 		return configurationService.getConfigurationById(id);
 	}
-		
+
+	@GetMapping("/get/{fieldName}")
+	public CcmConfiguration getConfigurationById(@PathVariable String fieldName){
+		return configurationService.getConfigurationByFieldCode(fieldName);
+	}	
+	
 	@GetMapping("/get")
 	public List<CcmConfiguration> getConfigurations(){
 		return configurationService.getAllConfigurations();
@@ -81,6 +86,20 @@ public class CcmConfigurationController {
   "status": false
 }
  
+{
+  "fieldCode": "101Field",
+  "fieldName": "FieldName",
+  "fieldDescription": "Field Description",
+  "required": true,
+  "dataFormat": "Data formate",
+  "fieldDefaultValue": "field default Value",
+  "maximumValue": "max 5000",
+  "minumumValue": "min value 10",
+  "field_value": "Field Value",
+  "affected_modules": "Affected Module",
+  "reason": "reason",
+  "status": false
+} 
  
 CcmConfiguration config = new CcmConfiguration();		
 		config.setFieldCode("101Field");
