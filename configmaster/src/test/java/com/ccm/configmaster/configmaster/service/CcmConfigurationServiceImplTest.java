@@ -37,8 +37,8 @@ class CcmConfigurationServiceImplTest {
 		config.setFieldDefaultValue("field default Value");
 		config.setMaximumValue("max 5000");
 		config.setMinumumValue("min value 10");
-		config.setField_value("Field Value");
-		config.setAffected_modules("Affected Module");
+		config.setFieldValue("Field Value");
+		config.setAffectedModules("Affected Module");
 		config.setReason("reason");
 		config.setStatus(false);	
 		
@@ -59,8 +59,8 @@ class CcmConfigurationServiceImplTest {
 		config.setFieldDefaultValue("field default Value");
 		config.setMaximumValue("max 5000");
 		config.setMinumumValue("min value 10");
-		config.setField_value("Field Value");
-		config.setAffected_modules("Affected Module");
+		config.setFieldValue("Field Value");
+		config.setAffectedModules("Affected Module");
 		config.setReason("reason");
 		config.setStatus(false);	
 		
@@ -84,8 +84,8 @@ class CcmConfigurationServiceImplTest {
 		config.setFieldDefaultValue("field default Value");
 		config.setMaximumValue("max 5000");
 		config.setMinumumValue("min value 10");
-		config.setField_value("Field Value");
-		config.setAffected_modules("Affected Module");
+		config.setFieldValue("Field Value");
+		config.setAffectedModules("Affected Module");
 		config.setReason("reason");
 		config.setStatus(false);		
 		when(ccmConfigurationrRepo.getByFieldCode("101Field")).thenReturn(config);
@@ -106,8 +106,8 @@ class CcmConfigurationServiceImplTest {
 		config.setFieldDefaultValue("field default Value");
 		config.setMaximumValue("max 5000");
 		config.setMinumumValue("min value 10");
-		config.setField_value("Field Value");
-		config.setAffected_modules("Affected Module");
+		config.setFieldValue("Field Value");
+		config.setAffectedModules("Affected Module");
 		config.setReason("reason");
 		config.setStatus(false);		
 		when(ccmConfigurationrRepo.getById(1)).thenReturn(config);

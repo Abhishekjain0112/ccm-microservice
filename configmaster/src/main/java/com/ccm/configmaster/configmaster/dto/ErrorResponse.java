@@ -11,7 +11,7 @@ public class ErrorResponse {
 	private String path;
 	
 	public ErrorResponse() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	

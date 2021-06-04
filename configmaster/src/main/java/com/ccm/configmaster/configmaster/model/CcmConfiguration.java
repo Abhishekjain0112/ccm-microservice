@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Info;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -56,10 +55,10 @@ public class CcmConfiguration {
 	private String minumumValue;
 	
 	@Column(name = "field_value",length =200, nullable = true)
-	private String field_value;
+	private String fieldValue;
 	
 	@Column(name = "affected_modules",length =200, nullable = true)
-	private String affected_modules ;
+	private String affectedModules ;
 	
 	@Column(name = "reason",length =20, nullable = true)
 	private String reason;

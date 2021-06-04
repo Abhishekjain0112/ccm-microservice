@@ -12,6 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,8 +47,8 @@ class ConfigmasterApplicationTests {
 			config.setFieldDefaultValue("field default Value");
 			config.setMaximumValue("max 5000");
 			config.setMinumumValue("min value 10");
-			config.setField_value("Field Value");
-			config.setAffected_modules("Affected Module");
+			config.setFieldValue("Field Value");
+			config.setAffectedModules("Affected Module");
 			config.setReason("reason");
 			config.setStatus(false);	
 			String jsonCcmConfiguration = this.mapToJson(config);			
@@ -53,6 +58,92 @@ class ConfigmasterApplicationTests {
 						        .andReturn();
 			 assertEquals(200, mvcResult.getResponse().getStatus());		
 	}
+	
+
+	
+	@Test
+	void testGetConfigurationById() throws Exception {		
+	       CcmConfiguration config = new CcmConfiguration();
+	        config.setCcmConfigId(1);
+			config.setFieldCode("101Field");
+			config.setFieldName("FieldName");
+			config.setFieldDescription("Field Description");
+			config.setRequired(true);
+			config.setDataFormat("Data formate");
+			config.setFieldDefaultValue("field default Value");
+			config.setMaximumValue("max 5000");
+			config.setMinumumValue("min value 10");
+			config.setFieldValue("Field Value");
+			config.setAffectedModules("Affected Module");
+			config.setReason("reason");
+			config.setStatus(false);	
+			
+			String jsonCcmConfiguration = this.mapToJson(config);
+			
+			 when(configurationService.getConfigurationById(1)).thenReturn(config);
+			 
+			 MvcResult mvcResult = mock.perform(get("/api/getid/"+1).contentType("application/json")
+					      		.content(jsonCcmConfiguration))
+						        .andReturn();		 
+			 assertEquals(200, mvcResult.getResponse().getStatus());	
+			 assertEquals(true, mvcResult.getResponse().getContentAsString().contains("101Field") );
+	}
+		
+	@Test
+	void testGetConfigurationByFieldCode() throws Exception {		
+	       CcmConfiguration config = new CcmConfiguration();
+	        config.setCcmConfigId(1);
+			config.setFieldCode("101Field");
+			config.setFieldName("FieldName");
+			config.setFieldDescription("Field Description");
+			config.setRequired(true);
+			config.setDataFormat("Data formate");
+			config.setFieldDefaultValue("field default Value");
+			config.setMaximumValue("max 5000");
+			config.setMinumumValue("min value 10");
+			config.setFieldValue("Field Value");
+			config.setAffectedModules("Affected Module");
+			config.setReason("reason");
+			config.setStatus(false);			
+			String jsonCcmConfiguration = this.mapToJson(config);
+			
+			 when(configurationService.getConfigurationByFieldCode("101Field")).thenReturn(config);
+			 
+			 MvcResult mvcResult = mock.perform(get("/api/get/"+"101Field").contentType("application/json")
+					      		.content(jsonCcmConfiguration))
+						        .andReturn();		 
+			 assertEquals(200, mvcResult.getResponse().getStatus());	
+			 assertEquals(true, mvcResult.getResponse().getContentAsString().contains("FieldName") );
+	}
+			
+
+	
+	@Test
+	void testGetAllConfigurations() throws Exception {		
+	       CcmConfiguration config = new CcmConfiguration();
+	        config.setCcmConfigId(1);
+			config.setFieldCode("101Field");
+			config.setFieldName("FieldName");
+			config.setFieldDescription("Field Description");
+			config.setRequired(true);
+			config.setDataFormat("Data formate");
+			config.setFieldDefaultValue("field default Value");
+			config.setMaximumValue("max 5000");
+			config.setMinumumValue("min value 10");
+			config.setFieldValue("Field Value");
+			config.setAffectedModules("Affected Module");
+			config.setReason("reason");
+			config.setStatus(false);			
+			
+			List<CcmConfiguration> ccmConfigurationList=new ArrayList<CcmConfiguration>();
+			ccmConfigurationList.add(config);		
+			 when(configurationService.getAllConfigurations()).thenReturn(ccmConfigurationList);		 
+			 MvcResult mvcResult = mock.perform(get("/api/get")).andReturn();		 
+			 assertEquals(200, mvcResult.getResponse().getStatus());	
+			 
+	}
+			
+	
 	
 	// JsonMapper
 	String mapToJson(Object object) throws JsonProcessingException {
