@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+import com.ccm.configmaster.configmaster.dto.CcmConfigurationDTO;
 import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,22 +38,39 @@ class ConfigmasterApplicationTests {
 	
 	@Test
 	void testSaveConfiguration() throws Exception {		
-	       CcmConfiguration config = new CcmConfiguration();
-	        config.setCcmConfigId(1);
-			config.setFieldCode("101Field");
-			config.setFieldName("FieldName");
-			config.setFieldDescription("Field Description");
-			config.setRequired(true);
-			config.setDataFormat("Data formate");
-			config.setFieldDefaultValue("field default Value");
-			config.setMaximumValue("max 5000");
-			config.setMinumumValue("min value 10");
-			config.setFieldValue("Field Value");
-			config.setAffectedModules("Affected Module");
-			config.setReason("reason");
-			config.setStatus(false);	
+	       CcmConfigurationDTO configDto = new CcmConfigurationDTO();
+	       configDto.setCcmConfigId(1);
+	        configDto.setFieldCode("101Field");
+	        configDto.setFieldName("FieldName");
+	        configDto.setFieldDescription("Field Description");
+	        configDto.setRequired(true);
+	        configDto.setDataFormat("Data formate");
+	        configDto.setFieldDefaultValue("field default Value");
+	        configDto.setMaximumValue("max 5000");
+	        configDto.setMinumumValue("min value 10");
+	        configDto.setFieldValue("Field Value");
+	        configDto.setAffectedModules("Affected Module");
+	        configDto.setReason("reason");
+	        configDto.setStatus(false);	
+
+		       CcmConfiguration config = new CcmConfiguration();
+		        config.setCcmConfigId(1);
+				config.setFieldCode("101Field");
+				config.setFieldName("FieldName");
+				config.setFieldDescription("Field Description");
+				config.setRequired(true);
+				config.setDataFormat("Data formate");
+				config.setFieldDefaultValue("field default Value");
+				config.setMaximumValue("max 5000");
+				config.setMinumumValue("min value 10");
+				config.setFieldValue("Field Value");
+				config.setAffectedModules("Affected Module");
+				config.setReason("reason");
+				config.setStatus(false);	
+							
+			
 			String jsonCcmConfiguration = this.mapToJson(config);			
-			 when(configurationService.addConfiguration(config)).thenReturn(config);
+			 when(configurationService.addConfiguration(configDto)).thenReturn(config);
 			 MvcResult mvcResult = mock.perform(post("/api/add").contentType("application/json")
 					      		.content(jsonCcmConfiguration))
 						        .andReturn();
