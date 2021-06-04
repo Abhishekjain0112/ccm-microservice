@@ -24,22 +24,22 @@ public class CcmConfigurationController {
 	
 	
 	@GetMapping("/getid/{id}")
-	public CcmConfiguration getConfigurationById(@PathVariable int id){
+	public CcmConfigurationDTO getConfigurationById(@PathVariable int id){
 		return configurationService.getConfigurationById(id);
 	}
 
 	@GetMapping("/get/{fieldName}")
-	public CcmConfiguration getConfigurationById(@PathVariable String fieldName){
+	public CcmConfigurationDTO getConfigurationById(@PathVariable String fieldName){
 		return configurationService.getConfigurationByFieldCode(fieldName);
 	}	
 	
 	@GetMapping("/get")
-	public List<CcmConfiguration> getConfigurations(){
+	public List<CcmConfigurationDTO> getConfigurations(){
 		return configurationService.getAllConfigurations();
 	}
 		
 	@PostMapping(value = "/add" , consumes = "application/json", produces = "application/json")
-	public CcmConfiguration addConfiguration(@RequestBody CcmConfigurationDTO configuration ) {
+	public CcmConfigurationDTO addConfiguration(@RequestBody CcmConfigurationDTO configuration ) {
 		return configurationService.addConfiguration(configuration);
 	}
 	

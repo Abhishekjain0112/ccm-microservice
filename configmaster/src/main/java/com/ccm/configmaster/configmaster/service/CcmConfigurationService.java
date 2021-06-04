@@ -7,12 +7,14 @@ import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 
 public interface CcmConfigurationService {
 
-	public List<CcmConfiguration> getAllConfigurations();
+	public List<CcmConfigurationDTO> getAllConfigurations();
 
-	public CcmConfiguration getConfigurationById(int id);
+	public CcmConfigurationDTO getConfigurationById(int id);
 
-	public CcmConfiguration addConfiguration(CcmConfigurationDTO configurationDto);
+	public CcmConfigurationDTO addConfiguration(CcmConfigurationDTO configurationDto);
 	
-	public CcmConfiguration getConfigurationByFieldCode(String fieldCode);
-	
+	public CcmConfigurationDTO getConfigurationByFieldCode(String fieldCode);
+
+	public CcmConfiguration getConfigFromDto(CcmConfigurationDTO configurationDto) ;
+	public CcmConfigurationDTO getDtoFromConfig(CcmConfiguration configuration);
 }
