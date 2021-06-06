@@ -1,21 +1,23 @@
-package com.ccm.configmaster.configmaster.model;
+package com.ccm.configmaster.configmaster.dto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ccm.configmaster.configmaster.dto.CcmConfigurationDTO;
+import com.ccm.configmaster.configmaster.model.CcmConfiguration;
+
 
 @SpringBootTest
-class CcmConfigurationTest {
 
-    CcmConfiguration createInstance() {
-	   return new CcmConfiguration();
+class CcmConfigurationDTOTest {
+
+	CcmConfigurationDTO createInstance() {
+	   return new CcmConfigurationDTO();
    }
    @Test
     void testGetccmConfigId() {
-	   CcmConfiguration config=  createInstance();
+	   CcmConfigurationDTO config=  createInstance();
 	   int id = config.getCcmConfigId();
 	   assertTrue(true);
 	  
@@ -23,7 +25,7 @@ class CcmConfigurationTest {
 
    @Test
     void testToString() {
-	   CcmConfiguration config=  createInstance();
+	   CcmConfigurationDTO config=  createInstance();
 	   String s= createInstance().toString();
 	   assertTrue(true);
    }
@@ -31,7 +33,7 @@ class CcmConfigurationTest {
    
    @Test
    void testGeterandSeter() {
-       CcmConfiguration config = new CcmConfiguration();	
+	   CcmConfigurationDTO config = new CcmConfigurationDTO();	
         config.setCcmConfigId(1);
 		config.setFieldCode("101Field");
 		assertEquals("101Field", config.getFieldCode());
@@ -70,7 +72,6 @@ class CcmConfigurationTest {
 		assertFalse(config.isStatus());
 		
 		assertEquals(config.toString(), config.toString());
+  
    }
-   
-   
 }
