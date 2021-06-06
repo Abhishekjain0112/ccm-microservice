@@ -44,7 +44,8 @@ class ErrorResponseTest {
 	       assertEquals(eResponce.toString(), eResponce.toString());
 	        
 	       ErrorResponse eeResponce= new ErrorResponse(new Date(), HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(), "Duplicate Entry for Unique Key:"+ex.getMessage(), request.getRequestURI());
-	       assertEquals(eeResponce, eeResponce);
+	       ErrorResponse neweeResponce =eeResponce;
+	       assertEquals(eeResponce, neweeResponce);
 	        
 		   
 	   }

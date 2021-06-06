@@ -3,7 +3,7 @@ package com.ccm.configmaster.configmaster.dto;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

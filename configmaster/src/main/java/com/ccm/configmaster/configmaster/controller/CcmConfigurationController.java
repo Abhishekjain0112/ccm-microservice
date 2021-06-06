@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ccm.configmaster.configmaster.dto.CcmConfigurationDTO;
-import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
 
 @RestController
@@ -38,6 +37,7 @@ public class CcmConfigurationController {
 		return configurationService.getAllConfigurations();
 	}
 		
+	
 	@PostMapping(value = "/add" , consumes = "application/json", produces = "application/json")
 	public CcmConfigurationDTO addConfiguration(@RequestBody CcmConfigurationDTO configuration ) {
 		return configurationService.addConfiguration(configuration);

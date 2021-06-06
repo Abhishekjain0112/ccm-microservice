@@ -14,6 +14,9 @@ import com.ccm.configmaster.configmaster.exception.DataNotFoundException;
 import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 import com.ccm.configmaster.configmaster.repository.CcmConfigurationrRepo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 
@@ -24,23 +27,27 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	
 	@Override
 	public List<CcmConfigurationDTO> getAllConfigurations() {
-		
+		log.info("Get All Configuration Methord Started");
 		List<CcmConfiguration> configList= configurationRepo.findAll();
 		List<CcmConfigurationDTO> configDTOList= new ArrayList<>();		
 		for(CcmConfiguration c : configList) {
 			configDTOList.add(getDtoFromConfig(c));
 		}
+		log.info("Get All Configuration Execution Compelte");
 		return configDTOList;
 	}
 
 	@Override
 	@Transactional
 	public CcmConfigurationDTO getConfigurationById(int id) {
-		
+		log.info("Get Configuration By Id Configuration Methord Started");
 		 Optional<CcmConfiguration> data = configurationRepo.findById(id);	
-		 if(data.isPresent())
+		 if(data.isPresent()) {
+			 log.info("Get Configuration By Id Configuration Execution Compelte");
 			 return     getDtoFromConfig(data.get());
+			 }
 		 else {
+			 log.info("Element with id is not present in the table");
 			 throw new DataNotFoundException("Data with id ["+id+"] Found");
 		 }
 		 
