@@ -70,6 +70,13 @@ class CcmConfigurationTest {
 		assertFalse(config.isStatus());
 		
 		assertEquals(config.toString(), config.toString());
+		CcmConfiguration config1 = config;
+		assertEquals(true, config.equals(config1));
+		assertEquals(false, config.equals(new CcmConfiguration()));
+		
+		assertEquals(true, config.hashCode()!=0);
+		
+		
    }
    
    

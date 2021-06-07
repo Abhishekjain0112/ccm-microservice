@@ -2,8 +2,6 @@ package com.ccm.configmaster.configmaster.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +12,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-
 import com.ccm.configmaster.configmaster.dto.CcmConfigurationDTO;
 import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class CcmConfigurationControllerTest {
 
 	
-	@Autowired
-	private MockMvc mock;
+
 	
 	@MockBean
 	private CcmConfigurationService configurationService;
@@ -143,11 +135,6 @@ class CcmConfigurationControllerTest {
 			
 	
 	
-	// JsonMapper
-	String mapToJson(Object object) throws JsonProcessingException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		return objectMapper.writeValueAsString(object);
-	}
 	
 	
 	
