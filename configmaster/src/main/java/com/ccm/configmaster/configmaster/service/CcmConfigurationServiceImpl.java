@@ -18,19 +18,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class CcmConfigurationServiceImpl implements CcmConfigurationService{
+public class CcmConfigurationServiceImpl implements CcmConfigurationService {
 
 	@Autowired
 	private CcmConfigurationrRepo configurationRepo;
-	
-	
-	
+
 	@Override
 	public List<CcmConfigurationDTO> getAllConfigurations() {
-		log.info("Get All Configuration Methord Started");
-		List<CcmConfiguration> configList= configurationRepo.findAll();
-		List<CcmConfigurationDTO> configDTOList= new ArrayList<>();		
-		for(CcmConfiguration c : configList) {
+		log.info("Get All Configuration Method Started");
+		List<CcmConfiguration> configList = configurationRepo.findAll();
+		List<CcmConfigurationDTO> configDTOList = new ArrayList<>();
+		for (CcmConfiguration c : configList) {
 			configDTOList.add(getDtoFromConfig(c));
 		}
 		log.info("Get All Configuration Execution Compelte");
@@ -40,40 +38,43 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 	@Override
 	@Transactional
 	public CcmConfigurationDTO getConfigurationById(int id) {
-		log.info("Get Configuration By Id Configuration Methord Started");
-		 Optional<CcmConfiguration> data = configurationRepo.findById(id);	
-		 if(data.isPresent()) {
-			 log.info("Get Configuration By Id Configuration Execution Compelte");
-			 return     getDtoFromConfig(data.get());
-			 }
-		 else {
-			 log.info("Element with id is not present in the table");
-			 throw new DataNotFoundException("Data with id ["+id+"] Found");
-		 }
-		 
-			 
-		
+		log.info("Get Configuration By Id Configuration Method Started");
+		Optional<CcmConfiguration> data = configurationRepo.findById(id);
+		if (data.isPresent()) {
+			log.info("Get Configuration By Id Configuration Execution Compelte");
+			return getDtoFromConfig(data.get());
+		} else {
+			log.info("Element with id is not present in the table");
+			throw new DataNotFoundException("Data with id [" + id + "] Found");
+		}
+
 	}
 
 	@Transactional
 	@Override
 	public CcmConfigurationDTO addConfiguration(CcmConfigurationDTO configurationDto) {
-		
-		var config =  getConfigFromDto(configurationDto) ;
-		  CcmConfiguration result = configurationRepo.save(config);
-		  
-		  return getDtoFromConfig(result);
+		log.info("AddConfiguration method starts execution");
+		var config = getConfigFromDto(configurationDto);
+		CcmConfiguration result = configurationRepo.save(config);
+		log.info("AddConfiguration method ends execution");
+		return getDtoFromConfig(result);
 	}
 
 	@Override
 	public CcmConfigurationDTO getConfigurationByFieldCode(String fieldCode) {
-		  CcmConfiguration result = configurationRepo.getByFieldCode(fieldCode);
-		  return getDtoFromConfig(result);
-	
+		log.info("Get Configuration By fieldCode Configuration Method Started");
+		CcmConfiguration result = configurationRepo.getByFieldCode(fieldCode);
+
+		CcmConfigurationDTO dtoFromConfig = getDtoFromConfig(result);
+		log.info("Get Configuration By fieldCode Configuration Method  Execution Compelte");
+		return dtoFromConfig;
+
 	}
+
 	@Override
 	public CcmConfiguration getConfigFromDto(CcmConfigurationDTO configurationDto) {
-		var config = new CcmConfiguration();	
+		log.info("Change DTO to Config model");
+		var config = new CcmConfiguration();
 		config.setCcmConfigId(configurationDto.getCcmConfigId());
 		config.setFieldCode(configurationDto.getFieldCode());
 		config.setFieldName(configurationDto.getFieldName());
@@ -88,12 +89,14 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 		config.setReason(configurationDto.getReason());
 		config.setCreatedOn(configurationDto.getCreatedOn());
 		config.setUpdatedOn(configurationDto.getUpdatedOn());
-		config.setStatus(configurationDto.isStatus()); 	
+		config.setStatus(configurationDto.isStatus());
 		return config;
 	}
+
 	@Override
 	public CcmConfigurationDTO getDtoFromConfig(CcmConfiguration configuration) {
-		var configDto = new CcmConfigurationDTO();		
+		log.info("Changed Config Model to DTO");
+		var configDto = new CcmConfigurationDTO();
 		configDto.setCcmConfigId(configuration.getCcmConfigId());
 		configDto.setFieldCode(configuration.getFieldCode());
 		configDto.setFieldName(configuration.getFieldName());
@@ -108,8 +111,8 @@ public class CcmConfigurationServiceImpl implements CcmConfigurationService{
 		configDto.setReason(configuration.getReason());
 		configDto.setCreatedOn(configuration.getCreatedOn());
 		configDto.setUpdatedOn(configuration.getUpdatedOn());
-		configDto.setStatus(configuration.isStatus()); 	
+		configDto.setStatus(configuration.isStatus());
 		return configDto;
-	}	
+	}
 
 }

@@ -12,9 +12,10 @@ public interface CcmConfigurationService {
 	public CcmConfigurationDTO getConfigurationById(int id);
 
 	public CcmConfigurationDTO addConfiguration(CcmConfigurationDTO configurationDto);
-	
+
 	public CcmConfigurationDTO getConfigurationByFieldCode(String fieldCode);
 
-	public CcmConfiguration getConfigFromDto(CcmConfigurationDTO configurationDto) ;
+	public CcmConfiguration getConfigFromDto(CcmConfigurationDTO configurationDto);
+
 	public CcmConfigurationDTO getDtoFromConfig(CcmConfiguration configuration);
 }

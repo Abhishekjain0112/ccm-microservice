@@ -3,9 +3,11 @@ package com.ccm.configmaster.configmaster.dto;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class CcmConfigurationDTO {
 	private String fieldCode;
 	private String fieldName;
 	private String fieldDescription;
+	@NotEmpty
 	private boolean required;
 	private String dataFormat;
 	private String fieldDefaultValue;

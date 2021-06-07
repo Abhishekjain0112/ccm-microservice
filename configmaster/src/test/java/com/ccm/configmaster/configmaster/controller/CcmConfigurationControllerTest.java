@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.ccm.configmaster.configmaster.dto.CcmConfigurationDTO;
-import com.ccm.configmaster.configmaster.model.CcmConfiguration;
 import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +33,9 @@ class CcmConfigurationControllerTest {
 	@MockBean
 	private CcmConfigurationService configurationService;
 	
+	
+	@Autowired
+	private CcmConfigurationController ccmConfigurationController;
 	
 	@Test
 	void testSaveConfiguration() throws Exception {		
@@ -54,12 +56,11 @@ class CcmConfigurationControllerTest {
 	
 							
 			
-			String jsonCcmConfiguration = this.mapToJson(configDto);			
+						
 			 when(configurationService.addConfiguration(configDto)).thenReturn(configDto);
-			 MvcResult mvcResult = mock.perform(post("/api/add").contentType("application/json")
-					      		.content(jsonCcmConfiguration))
-						        .andReturn();
-			 assertEquals(200, mvcResult.getResponse().getStatus());		
+		    
+			   assertEquals(configDto,ccmConfigurationController.addConfiguration(configDto) ); 
+			 
 	}
 	
 
@@ -80,16 +81,11 @@ class CcmConfigurationControllerTest {
 	        configDto.setAffectedModules("Affected Module");
 	        configDto.setReason("reason");
 	        configDto.setStatus(false);		
-			
-			String jsonCcmConfiguration = this.mapToJson(configDto);
+		
 			
 			 when(configurationService.getConfigurationById(1)).thenReturn(configDto);
-			 
-			 MvcResult mvcResult = mock.perform(get("/api/getid/"+1).contentType("application/json")
-					      		.content(jsonCcmConfiguration))
-						        .andReturn();		 
-			 assertEquals(200, mvcResult.getResponse().getStatus());	
-			 assertEquals(true, mvcResult.getResponse().getContentAsString().contains("101Field") );
+			 assertEquals(configDto,ccmConfigurationController.getConfigurationById(1) ); 
+		
 	}
 		
 	@Test
@@ -108,15 +104,11 @@ class CcmConfigurationControllerTest {
 	        configDto.setAffectedModules("Affected Module");
 	        configDto.setReason("reason");
 	        configDto.setStatus(false);			
-			String jsonCcmConfiguration = this.mapToJson(configDto);
-			
 			 when(configurationService.getConfigurationByFieldCode("101Field")).thenReturn(configDto);
 			 
-			 MvcResult mvcResult = mock.perform(get("/api/get/"+"101Field").contentType("application/json")
-					      		.content(jsonCcmConfiguration))
-						        .andReturn();		 
-			 assertEquals(200, mvcResult.getResponse().getStatus());	
-			 assertEquals(true, mvcResult.getResponse().getContentAsString().contains("FieldName") );
+			 assertEquals(configDto,ccmConfigurationController.getConfigurationByFieldName("101Field")); 
+				
+	
 	}
 			
 
@@ -143,8 +135,9 @@ class CcmConfigurationControllerTest {
 			List<CcmConfigurationDTO> ccmConfigurationList=new ArrayList<CcmConfigurationDTO>();
 			ccmConfigurationList.add(configDto);		
 			 when(configurationService.getAllConfigurations()).thenReturn(ccmConfigurationList);		 
-			 MvcResult mvcResult = mock.perform(get("/api/get")).andReturn();		 
-			 assertEquals(200, mvcResult.getResponse().getStatus());	
+			
+			 assertEquals(ccmConfigurationList,ccmConfigurationController.getConfigurations()); 
+				
 			 
 	}
 			
