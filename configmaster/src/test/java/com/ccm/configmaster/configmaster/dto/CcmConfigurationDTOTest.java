@@ -76,6 +76,6 @@ class CcmConfigurationDTOTest {
 		
 		assertEquals(true,config.equals(config1));
 		assertEquals(false,config.equals(new CcmConfigurationDTO()));
-		assertTrue( config.hashCode()!=0 );  
+		assertEquals( true,config.hashCode()!=0 );  
    }
 }

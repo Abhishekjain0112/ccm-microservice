@@ -98,7 +98,7 @@ class CcmConfigurationControllerTest {
 	        configDto.setStatus(false);			
 			 when(configurationService.getConfigurationByFieldCode("101Field")).thenReturn(configDto);
 			 
-			 assertEquals(configDto,ccmConfigurationController.getConfigurationByFieldName("101Field")); 
+			 assertEquals(configDto,ccmConfigurationController.getConfigurationByFieldCode("101Field")); 
 				
 	
 	}

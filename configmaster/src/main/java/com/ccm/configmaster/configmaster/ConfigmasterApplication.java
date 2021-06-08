@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
 @OpenAPIDefinition(
-		info = @Info(title = "CCM Master Application", version = "1.0.0")
+		info = @Info(title = "CCM Master Configuration Application", version = "1.0.0")
 		)
 public class ConfigmasterApplication {
 
