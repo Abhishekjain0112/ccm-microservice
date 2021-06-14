@@ -5,6 +5,7 @@ import java.time.Instant;
 
 import javax.validation.constraints.NotEmpty;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,9 @@ import lombok.NoArgsConstructor;
 public class CcmConfigurationDTO {
 	
 	private int ccmConfigId;
+	@Schema(description = "Unique FieldCode.", example = "101Field", required = true)
 	private String fieldCode;
+	@Schema(description = "Field Name ", example = "FieldName", required = true)
 	private String fieldName;
 	private String fieldDescription;
 	@NotEmpty
