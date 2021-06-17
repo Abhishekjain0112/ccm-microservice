@@ -1,5 +1,6 @@
 package com.ccm.configmaster.configmaster.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CcmConfigurationDTO {
+public class CcmConfigurationDTO implements Serializable{
 	
 	private int ccmConfigId;
 	@Schema(description = "Unique FieldCode.", example = "101Field", required = true)

@@ -12,16 +12,20 @@ import com.rabbitmq.rabbitmq.model.Person;
 @RestController
 @RequestMapping("/api")
 public class Controller {
-	
+
 	@Autowired
 	RabbitTemplate rabbitTemplate;
-	
+
 	@GetMapping("/test/{name}")
 	public String testAPI(@PathVariable String name) {
-		Person p = new Person(1, name, "Hello "+name);
-		rabbitTemplate.convertAndSend("Mobile", p); //use the simple msg conveter in need byte array or serializable obj
+		Person p = new Person(1, name, "Hello " + name);
+		rabbitTemplate.convertAndSend("Mobile", p); // use the simple msg conveter in need byte array or serializable
+													// obj
+		rabbitTemplate.convertAndSend("Direct-Exchange", "mobile", p);
+
+		Person p2 = new Person(2, name, "Hello Fanout subscriber model" + name);
+		rabbitTemplate.convertAndSend("Fanout-Exchange", "", p2);
 		return "Success";
 	}
-				
-	
+
 }

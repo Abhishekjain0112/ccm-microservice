@@ -3,6 +3,8 @@ package com.ccm.configmaster.configmaster.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +37,7 @@ public class CcmConfigurationController {
 	 */
 	@Operation(summary = "Give back the Configuration recode of the given ID", description = "It will return the configuration record for the given Id if the id not exist it will throw the exception", tags = {
 			"" + "GET" })
+	@Cacheable(value = "configurations", key="#id")
 	@GetMapping("/getid/{id}")
 	public CcmConfigurationDTO getConfigurationById(@PathVariable int id) {
 		log.info("Get by Field Id Url Hit: /getid/id ");
@@ -47,6 +50,7 @@ public class CcmConfigurationController {
 	 */
 	@Operation(summary = "Give back the Configuration recode of the given FieldCode", description = "It will return the configuration record for the given FieldCode if the FieldCode not exist it will throw the exception", tags = {
 			"GET" })
+	@Cacheable(value = "configurations", key="#fieldCode")
 	@GetMapping("/get/{fieldCode}")
 	public CcmConfigurationDTO getConfigurationByFieldCode(@PathVariable String fieldCode) {
 		log.info("Get by Field Name Url Hit: /getid/fieldCode ");
@@ -54,6 +58,7 @@ public class CcmConfigurationController {
 	}
 
 	/**
+	 * Get All Configuration present
 	 * @return CcmConfigurationDTO
 	 */
 	@Operation(summary = "Give back the All the Configurations present in the database", description = "It will return the all configuration records", tags = {
@@ -65,6 +70,7 @@ public class CcmConfigurationController {
 	}
 
 	/**
+	 * Update Configuration
 	 * @param configuration
 	 * @return
 	 */
