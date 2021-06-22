@@ -22,7 +22,7 @@ public class CcmConfigurationErrorHandler {
 	@ExceptionHandler({ MethodArgumentNotValidException.class, PropertyValueException.class,
 			DataIntegrityViolationException.class })
 	public ErrorResponse handleExceptionValidation(Exception ex, HttpServletRequest request) {
-		return new ErrorResponse(new Date(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(),
+		return new ErrorResponse(new Date(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
 				"Please check the Validation :" + ex.getMessage(), request.getRequestURI());
 	}
 
