@@ -23,6 +23,10 @@ import com.ccm.configmaster.configmaster.service.CcmConfigurationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author 896898
+ *
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CcmConfigurationControllerTestMVC {
@@ -92,7 +96,7 @@ public class CcmConfigurationControllerTestMVC {
 					      		.content(jsonCcmConfiguration))
 						        .andReturn();		 
 			 assertEquals(200, mvcResult.getResponse().getStatus());	
-			// assertEquals(true, mvcResult.getResponse().getContentAsString().contains("101Field") );
+		
 	}
 		
 	@Test
@@ -120,7 +124,7 @@ public class CcmConfigurationControllerTestMVC {
 					      		.content(jsonCcmConfiguration))
 						        .andReturn();		 
 			 assertEquals(200, mvcResult.getResponse().getStatus());	
-			// assertEquals(true, mvcResult.getResponse().getContentAsString().contains("FieldName") );
+		
 	}
 			
 
