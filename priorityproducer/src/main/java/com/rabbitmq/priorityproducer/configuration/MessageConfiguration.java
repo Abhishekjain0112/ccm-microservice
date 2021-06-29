@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +28,7 @@ public class MessageConfiguration {
 	Queue queue() {
 		Map<String, Object> args = new HashMap<>();
 		args.put("x-max-priority", 100);
+		//args.put("x-dead-letter-routing-key", "dlrkey");
 		return new Queue(QUEUE, false, false, false, args);
 	}
 
@@ -42,4 +45,19 @@ public class MessageConfiguration {
 		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
 	}
 
+	
+	@Bean
+	Queue dlq() {
+		return QueueBuilder.durable("deadLetter.queue").build();
+	}	
+	
+	@Bean
+	DirectExchange deadLetterExchange() {
+		return new DirectExchange("deadLetterExchange");
+	}
+	@Bean
+	Binding DLQbinding() {
+		return BindingBuilder.bind(dlq()).to(deadLetterExchange()).with("dlrkey");
+	}	
+	
 }
