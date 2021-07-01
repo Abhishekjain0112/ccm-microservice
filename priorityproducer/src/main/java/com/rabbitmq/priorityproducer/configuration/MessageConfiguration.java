@@ -28,7 +28,8 @@ public class MessageConfiguration {
 	Queue queue() {
 		Map<String, Object> args = new HashMap<>();
 		args.put("x-max-priority", 100);
-		//args.put("x-dead-letter-routing-key", "dlrkey");
+		args.put("x-dead-letter-exchange", "deadLetterExchange");
+		args.put("x-dead-letter-routing-key", "dlrkey");
 		return new Queue(QUEUE, false, false, false, args);
 	}
 
@@ -46,18 +47,34 @@ public class MessageConfiguration {
 	}
 
 	
+	
+	/**
+	 * Dead Letter Queue
+	 * @return
+	 */
 	@Bean
 	Queue dlq() {
 		return QueueBuilder.durable("deadLetter.queue").build();
-	}	
+	}
+
 	
+	/**
+	 * Dead Letter Exchange
+	 * @return
+	 */
 	@Bean
 	DirectExchange deadLetterExchange() {
 		return new DirectExchange("deadLetterExchange");
 	}
+
+	/**
+	 * Dead Letter Binding
+	 * 
+	 * @return
+	 */
 	@Bean
 	Binding DLQbinding() {
 		return BindingBuilder.bind(dlq()).to(deadLetterExchange()).with("dlrkey");
-	}	
-	
+	}
+
 }

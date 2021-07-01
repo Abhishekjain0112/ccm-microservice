@@ -23,6 +23,7 @@ public class MessageSender {
 	    rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY_PREFIX + "test", "Hello Abhishek this is priority Queue MSG: " + content,
 	            message -> {
 	                message.getMessageProperties().setPriority(priority);
+	                //if(priority>100) {throw new RuntimeException();}
 	                return message;
 	            });
 	}
